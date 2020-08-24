@@ -38,7 +38,7 @@ const Tooltip = ({
           !isLastStep ?
             <TouchableOpacity onPress={handleStop}>
               {/* <Button>{labels.skip || 'Skip'}</Button> */}
-              <Button style={{ color: Themes.GRAY_TEXT_COLOR }}>{translate('tut.ignore')}</Button>
+              <Button style={{ color: '#aaa' }}>{translate('tut.ignore')}</Button>
             </TouchableOpacity>
             : null
         }
@@ -46,7 +46,7 @@ const Tooltip = ({
           !isFirstStep ?
             <TouchableOpacity onPress={handlePrev}>
               {/* <Button>{labels.previous || 'Previous'}</Button> */}
-              <Button style={{ color: Themes.MAIN_TEXT_COLOR }}>{translate('tut.previous')}</Button>
+              <Button>{translate('tut.previous')}</Button>
             </TouchableOpacity>
             : null
         }
@@ -57,7 +57,7 @@ const Tooltip = ({
               {/* <Button>{labels.next || 'Next'}</Button> */}
             </TouchableOpacity> :
             <TouchableOpacity onPress={handleStop}>
-              <Button style={{ color: Themes.LIGHT_BLUE }}>{translate('tut.done')}</Button>
+              <Button style={{ color: Themes.BLUE }}>{translate('tut.done')}</Button>
               {/* <Button>{labels.finish || 'Finish'}</Button> */}
             </TouchableOpacity>
         }
