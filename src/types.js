@@ -1,5 +1,6 @@
 // @flow
 export type Step = {
+  canScroll: boolean
   name: string,
   order: number,
   visible: boolean,

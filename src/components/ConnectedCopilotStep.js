@@ -43,6 +43,7 @@ class ConnectedCopilotStep extends Component<Props> {
 
   register() {
     this.props._copilot.registerStep({
+      canScroll: this.props.canScroll,
       name: this.props.name,
       text: this.props.text,
       order: this.props.order,

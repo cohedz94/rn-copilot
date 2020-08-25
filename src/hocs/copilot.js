@@ -13,6 +13,7 @@ import { OFFSET_WIDTH } from '../components/style';
 import { getFirstStep, getLastStep, getStepNumber, getPrevStep, getNextStep } from '../utilities';
 
 import type { Step, CopilotContext } from '../types';
+import { wp } from '../../../../src/common/Themes';
 
 /*
 This is the maximum wait time for the steps to be registered before starting the tutorial
@@ -89,12 +90,12 @@ const copilot = ({
         await this.setState({ currentStep: step });
         this.eventEmitter.emit('stepChange', step);
 
-        if (this.state.scrollView) {
+        if (step.canScroll && this.state.scrollView) {
           const { scrollView } = this.state;
           await this.state.currentStep.wrapper.measureLayout(
             findNodeHandle(scrollView), (x, y, w, h) => {
               const yOffsett = y > 0 ? y - (h / 2) : 0;
-              scrollView.scrollTo({ y: yOffsett, animated: false });
+              scrollView.scrollTo({ y: step.order === 1 ? wp(-150) : yOffsett, animated: false });
             });
         }
         setTimeout(() => {
