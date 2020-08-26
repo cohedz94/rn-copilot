@@ -11,12 +11,13 @@ class SvgPathWrap extends Component {
   }
 
   render() {
-    return (
+    return <>
       <Path
         ref={(component) => { this._component = component; }}
         {...this.props}
+        onPress={() => { }}
       />
-    );
+    </>
   }
 }
 

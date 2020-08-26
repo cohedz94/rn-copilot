@@ -78,6 +78,10 @@ class ViewMask extends Component<Props, State> {
 
     return (
       <View style={this.props.style} onStartShouldSetResponder={this.props.onClick}>
+        <View style={{ height: '100%', width: '100%', backgroundColor: 'red' }}
+          onStartShouldSetResponder={this.props.onClickInside}>
+
+        </View>
         <Animated.View
           style={[
             styles.overlayRectangle,

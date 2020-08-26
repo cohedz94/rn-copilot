@@ -10,9 +10,31 @@ import Svg from 'react-native-svg';
 import AnimatedSvgPath from './AnimatedPath';
 
 import type { valueXY, svgMaskPath } from '../types';
+import { screenWidth } from '../../../../src/config';
 
 const windowDimensions = Dimensions.get('window');
-const defaultSvgPath = ({ size, position, canvasSize }): string => `M0,0H${canvasSize.x}V${canvasSize.y}H0V0ZM${position.x._value},${position.y._value}H${position.x._value + size.x._value}V${position.y._value + size.y._value}H${position.x._value}V${position.y._value}Z`;
+const defaultSvgPath = ({ size, position, canvasSize }): string => {
+
+  if (size.x._value > screenWidth) {
+    size.x._value = screenWidth
+  }
+  let raidus = 5
+  return `
+    M0,0H${canvasSize.x}V${canvasSize.y}H0V0Z 
+    
+    M${position.x._value},${position.y._value}
+    
+    H${position.x._value + size.x._value - raidus}
+    a${raidus},${raidus} 0 0 1 ${raidus},${raidus} 
+    V${position.y._value + size.y._value - raidus}
+    a${raidus},${raidus} 0 0 1 -${raidus},${raidus} 
+    
+    H${position.x._value + raidus}
+    a${raidus},${raidus} 0 0 1 -${raidus},-${raidus}
+    V${position.y._value + raidus}
+    a${raidus},${raidus} 0 0 1 ${raidus},-${raidus}
+    Z`
+}
 
 type Props = {
   size: valueXY,
@@ -112,7 +134,7 @@ class SvgMask extends Component<Props, State> {
         {
           this.state.canvasSize
             ? (
-              <Svg pointerEvents="none" width={this.state.canvasSize.x} height={this.state.canvasSize.y}>
+              <Svg pointerEvents="none" width={this.state.canvasSize.x} height={this.state.canvasSize.y} onPress={this.props.onClickInside}>
                 <AnimatedSvgPath
                   ref={(ref) => { this.mask = ref; }}
                   fill={this.props.backdropColor}

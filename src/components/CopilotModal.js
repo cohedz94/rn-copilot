@@ -41,7 +41,7 @@ type State = {
   },
 };
 
-const noop = () => {};
+const noop = () => { };
 
 class CopilotModal extends Component<Props, State> {
   static defaultProps = {
@@ -236,6 +236,10 @@ class CopilotModal extends Component<Props, State> {
     }
   };
 
+  onClickInside = () => {
+    this.props.isLastStep ? this.handleStop() : this.handleNext()
+  }
+
   renderMask() {
     /* eslint-disable global-require */
     const MaskComponent = this.props.overlay === 'svg'
@@ -254,6 +258,7 @@ class CopilotModal extends Component<Props, State> {
         backdropColor={this.props.backdropColor}
         svgMaskPath={this.props.svgMaskPath}
         onClick={this.handleMaskClick}
+        onClickInside={this.onClickInside}
       />
     );
   }

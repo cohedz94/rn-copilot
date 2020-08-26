@@ -46,7 +46,7 @@ const Tooltip = ({
           !isFirstStep ?
             <TouchableOpacity onPress={handlePrev}>
               {/* <Button>{labels.previous || 'Previous'}</Button> */}
-              <Button>{translate('tut.previous')}</Button>
+              <Button style={{ color: Themes.HOME_TOP_1 }}>{translate('tut.previous')}</Button>
             </TouchableOpacity>
             : null
         }
@@ -57,7 +57,7 @@ const Tooltip = ({
               {/* <Button>{labels.next || 'Next'}</Button> */}
             </TouchableOpacity> :
             <TouchableOpacity onPress={handleStop}>
-              <Button style={{ color: Themes.BLUE }}>{translate('tut.done')}</Button>
+              <Button style={{ color: Themes.HOME_TOP_3 }}>{translate('tut.done')}</Button>
               {/* <Button>{labels.finish || 'Finish'}</Button> */}
             </TouchableOpacity>
         }
