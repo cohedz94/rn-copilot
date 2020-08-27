@@ -5,6 +5,7 @@ import {
   Animated,
   Easing,
   Dimensions,
+  Platform,
 } from 'react-native';
 import Svg from 'react-native-svg';
 import AnimatedSvgPath from './AnimatedPath';
@@ -125,32 +126,40 @@ class SvgMask extends Component<Props, State> {
   }
 
   render() {
+    const { size, canvasSize, position } = this.state
     return (
-      <View
-        style={this.props.style}
-        onLayout={this.handleLayout}
-        onStartShouldSetResponder={this.props.onClick}
-      >
-        {
-          this.state.canvasSize
-            ? (
-              <Svg pointerEvents="none" width={this.state.canvasSize.x} height={this.state.canvasSize.y} onPress={this.props.onClickInside}>
+      <>
+        <View
+          style={this.props.style}
+          onLayout={this.handleLayout}
+          onStartShouldSetResponder={this.props.onClick}
+        >
+          {
+            canvasSize
+              ? <Svg pointerEvents="none" width={this.state.canvasSize.x} height={this.state.canvasSize.y} onPress={this.props.onClickInside} >
                 <AnimatedSvgPath
                   ref={(ref) => { this.mask = ref; }}
                   fill={this.props.backdropColor}
                   fillRule="evenodd"
                   strokeWidth={1}
                   d={this.props.svgMaskPath({
-                    size: this.state.size,
-                    position: this.state.position,
-                    canvasSize: this.state.canvasSize,
+                    size: size,
+                    position: position,
+                    canvasSize: canvasSize,
                   })}
                 />
               </Svg>
-            )
-            : null
-        }
-      </View>
+              : null
+          }
+        </View>
+        {Platform.OS === 'android' && <View style={{
+          height: this.props.size.y, width: this.props.size.x,
+          top: this.props.position.y, left: this.props.position.x,
+          position: 'absolute'
+        }}
+          onStartShouldSetResponder={this.props.onClickInside} />}
+      </>
+
     );
   }
 }
