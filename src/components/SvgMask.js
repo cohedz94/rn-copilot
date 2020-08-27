@@ -155,7 +155,7 @@ class SvgMask extends Component<Props, State> {
         {Platform.OS === 'android' && <View style={{
           height: this.props.size.y, width: this.props.size.x,
           top: this.props.position.y, left: this.props.position.x,
-          position: 'absolute'
+          position: 'absolute', zIndex: 1000
         }}
           onStartShouldSetResponder={this.props.onClickInside} />}
       </>
