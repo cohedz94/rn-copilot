@@ -136,7 +136,7 @@ class SvgMask extends Component<Props, State> {
         >
           {
             canvasSize
-              ? <Svg pointerEvents="none" width={this.state.canvasSize.x} height={this.state.canvasSize.y} onPress={this.props.onClickInside} >
+              ? <Svg pointerEvents="none" width={this.state.canvasSize.x} height={this.state.canvasSize.y} >
                 <AnimatedSvgPath
                   ref={(ref) => { this.mask = ref; }}
                   fill={this.props.backdropColor}
@@ -152,12 +152,12 @@ class SvgMask extends Component<Props, State> {
               : null
           }
         </View>
-        {Platform.OS === 'android' && <View style={{
+        <View style={{
           height: this.props.size.y, width: this.props.size.x,
           top: this.props.position.y, left: this.props.position.x,
           position: 'absolute', backgroundColor: "transparent"
         }}
-          onStartShouldSetResponder={this.props.onClickInside} />}
+          onStartShouldSetResponder={this.props.onClickInside} />
       </>
 
     );
