@@ -236,7 +236,14 @@ class CopilotModal extends Component<Props, State> {
     }
   };
 
+  canClickInside = true
+
   onClickInside = () => {
+    if (!this.canClickInside) return
+    this.canClickInside = false
+    setTimeout(() => {
+      this.canClickInside = true
+    }, 1300);
     this.props.isLastStep ? this.handleStop() : this.handleNext()
   }
 
