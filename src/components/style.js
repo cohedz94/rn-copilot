@@ -1,6 +1,7 @@
 // @flow
 import { StyleSheet } from 'react-native';
 import { Themes } from '../../../../src/common';
+import { fontSize } from '../../../../src/config';
 
 export const STEP_NUMBER_RADIUS: number = 14;
 export const STEP_NUMBER_DIAMETER: number = STEP_NUMBER_RADIUS * 2;
@@ -63,7 +64,8 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: '#27ae60',
-    fontWeight:'bold'
+    fontWeight:'bold',
+    fontSize: fontSize.xs
   },
   bottomBar: {
     marginTop: 10,
